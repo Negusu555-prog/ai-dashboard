@@ -3,9 +3,13 @@ from document_processor import extract_text_from_pdf
 from rag_engine import RAGEngine
 import tempfile
 import os
+from pydantic import BaseModel
 
 app = FastAPI()
 rag = RAGEngine()
+
+class AskRequest(BaseModel):
+    question: str
 
 @app.post("/upload")
 async def upload_document(file: UploadFile = File(...)):
@@ -21,8 +25,8 @@ async def upload_document(file: UploadFile = File(...)):
     return {"message": f"עובדו {len(chunks)} חתיכות בהצלחה"}
 
 @app.post("/ask")
-async def ask_question(question: str):
-    result = rag.answer(question)
+async def ask_question(request: AskRequest):
+    result = rag.answer(request.question)
     return result
 
 @app.get("/health")
