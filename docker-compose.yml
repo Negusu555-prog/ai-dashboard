@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend        # תיקיית ה-backend שלנו
+    ports:
+      - "8000:8000"         # backend נגיש מבחוץ על פורט 8000
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - rag-service
+      - agent-service
+
+  rag-service:
+    build: ./rag-service     # פרויקט 1
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./rag-service/.env
+
+  agent-service:
+    build: ./agent-service   # פרויקט 2
+    ports:
+      - "8002:8002"
+    env_file:
+      - ./agent-service/.env
