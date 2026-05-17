@@ -1,4 +1,3 @@
-# rag_engine.py
 from groq import Groq
 from vector_store import VectorStore
 from typing import Dict
@@ -18,7 +17,7 @@ class RAGEngine:
         response = self.client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             max_tokens=500,
-            messages=[
+            messages= [
                 {
                     "role": "system",
                     "content": """אתה עוזר משפטי מקצועי.
@@ -26,7 +25,7 @@ class RAGEngine:
                         תמיד ציין את מספר העמוד שממנו לקחת את המידע.
                         אם התשובה לא במסמכים — אמור בדיוק: 'מידע זה לא נמצא במסמך.'
                         ⚠️ השתמש אך ורק במספרי העמודים שמופיעים ב-[מקורות] — אל תמציא מספרי עמוד."""
-                }
+                },
                 {
                     "role": "user",
                     "content": f"""
