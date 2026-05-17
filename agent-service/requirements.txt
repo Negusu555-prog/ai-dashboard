@@ -5,3 +5,5 @@ langchain-groq
 langgraph
 tavily-python
 python-dotenv
+beautifulsoup4
+requests
