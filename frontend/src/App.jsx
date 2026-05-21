@@ -1,8 +1,10 @@
+import RagPanel from "./components/RagPanel"
+
 function App() {
   return (
-    <div className="bg-blue-500 text-white text-4xl p-10">
-      Tailwind עובד!
-    </div>
+  <div className="min-h-screen bg-gray-100 flex items-center justify-center p-10">
+    <RagPanel />
+  </div>
   )
 }
 
