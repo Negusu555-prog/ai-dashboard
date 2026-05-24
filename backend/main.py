@@ -10,7 +10,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React מורשה
+    allow_origins=["http://localhost:5173"],  # React מורשה
     allow_methods=["*"],
     allow_headers=["*"],
 )
