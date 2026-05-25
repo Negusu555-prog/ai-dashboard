@@ -10,6 +10,8 @@ services:
     depends_on:
       - rag-service
       - agent-service
+    networks:
+      - ai-network
 
   rag-service:
     build: ./rag-service     # פרויקט 1
@@ -17,6 +19,8 @@ services:
       - "8001:8001"
     env_file:
       - ./rag-service/.env
+    networks:
+      - ai-network
 
   agent-service:
     build: ./agent-service   # פרויקט 2
@@ -24,3 +28,18 @@ services:
       - "8002:8002"
     env_file:
       - ./agent-service/.env
+    networks:
+      - ai-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - ai-network
+      
+networks:
+  ai-network:
+    driver: bridge
